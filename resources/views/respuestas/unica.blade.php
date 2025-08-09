@@ -119,31 +119,31 @@
             <input type="hidden" name="canal" value="{{ $canal }}">
             <div class="row mb-3">
                 <div class="col-md-6">
-                    <label for="nombre_empresa" class="form-label">Nombre de la Empresa</label>
+                    <label for="nombre_empresa" class="form-label"><strong>Nombre de la Empresa</strong></label>
                     <input type="text" class="form-control" id="nombre_empresa" name="nombre_empresa"
                         value="{{ old('nombre_empresa', $datosBot->nombre_empresa ?? '') }}" required>
                 </div>
                 <div class="col-md-6">
-                    <label for="nombre_bot" class="form-label">Nombre del Bot</label>
+                    <label for="nombre_bot" class="form-label"><strong>Nombre del Bot</strong></label>
                     <input type="text" class="form-control" id="nombre_bot" name="nombre_bot"
                         value="{{ old('nombre_bot', $datosBot->nombre_bot ?? '') }}" required>
                 </div>
             </div>
 
             <div class="mb-3">
-                <label for="rol" class="form-label">Rol</label>
+                <label for="rol" class="form-label"><strong>Rol</strong></label>
                 <input type="text" class="form-control" id="rol" name="rol"
                     value="{{ old('rol', $datosBot->rol ?? '') }}" required>
             </div>
 
             <div class="mb-3">
-                <label for="personalidad" class="form-label">Personalidad</label>
+                <label for="personalidad" class="form-label"><strong>Personalidad</strong></label>
                 <input type="text" class="form-control" id="personalidad" name="personalidad"
                     value="{{ old('personalidad', $datosBot->personalidad ?? '') }}" required>
             </div>
 
             <div class="mb-3">
-                <label class="form-label">Comportamiento</label>
+                <label class="form-label "><strong>Comportamiento</strong></label>
                 <div class="repeater">
                     <div data-repeater-list="items">
                         @if (isset($datosBot) && $datosBot->contenido)
