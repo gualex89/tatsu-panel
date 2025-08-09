@@ -53,7 +53,7 @@ class RespuestaBotController extends Controller
         );
 
         $response = Http::withBasicAuth('tatsuadmin', 'eyJ0eXDiOiJKV1QiLCJhbGciOiJIUzI1NiJ9')
-        ->post('https://n8n2gus.vgroup.cl/webhook/actualizar-bot', [
+        ->post('https://tatsubot.makenafundas.com.ar/webhook/actualizar-bot', [
             'user_id' => $userId,
         ]);
         

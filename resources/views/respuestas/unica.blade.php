@@ -19,8 +19,8 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 
-    
-   
+
+
     <link href="https://cdn.jsdelivr.net/npm/@n8n/chat/dist/style.css" rel="stylesheet" />
     <script type="module">
         import {
@@ -50,7 +50,7 @@
     <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
 
     <style>
-        
+
     </style>
 </head>
 
@@ -100,6 +100,18 @@
             </script>
         @endif
 
+        <div class="d-flex align-items-center gap-3 my-3">
+            <div class="form-check form-switch m-0">
+                <input class="form-check-input" type="checkbox" id="clavija"
+                    {{ !empty($datosBot->status) && $datosBot->status ? 'checked' : '' }}>
+                <label class="form-check-label" for="clavija">
+                    <strong
+                        id="estadoTxt">{{ !empty($datosBot->status) && $datosBot->status ? 'Encendido' : 'Apagado' }}</strong>
+                </label>
+            </div>
+            <span id="clavijaStatus" class="text-muted small"></span>
+        </div>
+
 
 
         <form method="POST" action="{{ route('respuestas-bot.store') }}">
@@ -107,14 +119,14 @@
             <input type="hidden" name="canal" value="{{ $canal }}">
             <div class="row mb-3">
                 <div class="col-md-6">
-                    <label for="nombre_bot" class="form-label">Nombre del Bot</label>
-                    <input type="text" class="form-control" id="nombre_bot" name="nombre_bot"
-                        value="{{ old('nombre_bot', $datosBot->nombre_bot ?? '') }}" required>
-                </div>
-                <div class="col-md-6">
                     <label for="nombre_empresa" class="form-label">Nombre de la Empresa</label>
                     <input type="text" class="form-control" id="nombre_empresa" name="nombre_empresa"
                         value="{{ old('nombre_empresa', $datosBot->nombre_empresa ?? '') }}" required>
+                </div>
+                <div class="col-md-6">
+                    <label for="nombre_bot" class="form-label">Nombre del Bot</label>
+                    <input type="text" class="form-control" id="nombre_bot" name="nombre_bot"
+                        value="{{ old('nombre_bot', $datosBot->nombre_bot ?? '') }}" required>
                 </div>
             </div>
 
@@ -131,7 +143,7 @@
             </div>
 
             <div class="mb-3">
-                <label class="form-label">Respuestas</label>
+                <label class="form-label">Comportamiento</label>
                 <div class="repeater">
                     <div data-repeater-list="items">
                         @if (isset($datosBot) && $datosBot->contenido)
@@ -158,10 +170,12 @@
                                         placeholder="Cuando el cliente diga..." required>
                                 </div>
                                 <div class="col-md-5">
-                                    <textarea name="respuesta" class="form-control auto-expand" rows="1" placeholder="El bot responderá..." required></textarea>
+                                    <textarea name="respuesta" class="form-control auto-expand" rows="1" placeholder="El bot responderá..."
+                                        required></textarea>
                                 </div>
                                 <div class="col-md-2 d-grid">
-                                    <button type="button" data-repeater-delete class="btn btn-danger">Eliminar</button>
+                                    <button type="button" data-repeater-delete
+                                        class="btn btn-danger">Eliminar</button>
                                 </div>
                             </div>
                         @endif
@@ -262,6 +276,57 @@
             }, 500); // revisa cada 500ms
         });
     </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const switchEl = document.getElementById('clavija');
+            const estadoTxt = document.getElementById('estadoTxt');
+            const statusTxt = document.getElementById('clavijaStatus');
+            const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+
+            switchEl.addEventListener('change', async () => {
+                const status = switchEl.checked ? 1 : 0;
+
+                estadoTxt.textContent = status === 1 ? 'Encendido' : 'Apagado';
+                statusTxt.textContent = 'Guardando...';
+                switchEl.disabled = true;
+
+                try {
+                    const resp = await fetch('{{ route('clavija.update') }}', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-CSRF-TOKEN': csrfToken
+                        },
+                        body: JSON.stringify({
+                            id_bot: '{{ $datosBot->id ?? null }}',
+                            canal: '{{ $canal }}', // <-- Aquí agregamos el canal
+                            status: status
+                        })
+                    });
+
+                    if (!resp.ok) throw new Error('Error en la solicitud');
+
+                    const result = await resp.json();
+                    if (result.ok) {
+                        statusTxt.textContent = '✔ Guardado';
+                    } else {
+                        throw new Error('Respuesta no válida');
+                    }
+
+                } catch (error) {
+                    switchEl.checked = status !== 1;
+                    estadoTxt.textContent = switchEl.checked ? 'Encendido' : 'Apagado';
+                    statusTxt.textContent = '✖ Error al guardar';
+                    console.error(error);
+                } finally {
+                    switchEl.disabled = false;
+                    setTimeout(() => statusTxt.textContent = '', 2000);
+                }
+            });
+        });
+    </script>
+
+
 
 
 </body>

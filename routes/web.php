@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RespuestaBotController;
 use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\BotConfigController;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,6 +41,7 @@ Route::middleware('auth')->group(function () {
 });
 
 
+Route::post('/clavija', [BotConfigController::class, 'clavija'])->name('clavija.update');
 
 
 Route::group(['prefix' => 'admin'], function () {
