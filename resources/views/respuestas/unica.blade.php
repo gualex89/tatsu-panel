@@ -80,6 +80,12 @@
                     </a>
                 @endif
             </div>
+            <div class="mt-4">
+
+                <a href="/tutorial" class="btn nav-link my-3">
+                    <i class="fas fa-play-circle"></i> Tutorial
+                </a>
+            </div>
         </div>
     </div>
 
@@ -248,7 +254,7 @@
 
                 // Crea el video
                 const vid = document.createElement('video');
-                vid.src = '/assets/agentesaluda.mp4'; // <— asegúrate del nombre correcto
+                vid.src = '/assets/bot-saluda3.mp4'; // <— asegúrate del nombre correcto
                 vid.autoplay = true;
                 vid.loop = false; // no repetir automáticamente
                 vid.muted = true; // necesario para autoplay

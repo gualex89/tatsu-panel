@@ -17,7 +17,7 @@ use App\Http\Controllers\BotConfigController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('index');
 });
 
 
@@ -37,6 +37,7 @@ Route::prefix('auth')->group(function () {
 Route::middleware('auth')->group(function () {
     Route::get('/respuestas-bot', [RespuestaBotController::class, 'index'])->name('respuestas-bot.index');
     Route::post('/respuestas-bot', [RespuestaBotController::class, 'store'])->name('respuestas-bot.store');
+    Route::get('/tutorial', [RespuestaBotController::class, 'tutorial'])->name('respuestas-bot.tutorial');
     
 });
 

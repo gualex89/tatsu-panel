@@ -62,4 +62,16 @@ class RespuestaBotController extends Controller
 
         return redirect()->route('respuestas-bot.index', ['canal' => $canal])->with('success', 'Configuración guardada correctamente.');
     }
+    public function tutorial(Request $request)
+    {
+        $canal = 'tutorial'; // Default canal
+        $userId = Auth::id();
+
+        $datosBot = RespuestaBot::where('user_id', $userId)
+                                ->where('canal', $canal)
+                                ->first();
+
+        return view('respuestas.tutorial', compact('datosBot', 'canal'));
+    }
+
 }

@@ -166,8 +166,8 @@ body {
 .chat-window-wrapper .chat-window-toggle {
   position: relative;
   overflow: visible !important;
-  width: 90px;
-  height: 90px;
+  width: 104px;
+  height: 104px;
   /* right: 80px;  */
   /* permitir que elementos ::after salgan */
 }
@@ -175,9 +175,9 @@ body {
 .chat-window-wrapper .chat-window-toggle::after {
   content: '';
   position: absolute;
-  top: 0px;
+  top: 3px;
   /* arriba del círculo */
-  left: 0px;
+  left: 4px;
   /* a la izquierda del círculo */
   width: 10px;
   height: 10px;
