@@ -1,10 +1,18 @@
+# Imagen base
 FROM php:8.2-fpm
 
-# Instalar dependencias del sistema y extensiones necesarias
+# Instalar dependencias del sistema
 RUN apt-get update && apt-get install -y \
-    unzip git curl libpng-dev libjpeg-dev libfreetype6-dev libonig-dev libxml2-dev zip libzip-dev nginx supervisor \
+    libpng-dev \
+    libjpeg-dev \
+    libfreetype6-dev \
+    zip \
+    git \
+    unzip \
+    curl \
+    nginx \
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
-    && docker-php-ext-install gd pdo_mysql mbstring exif pcntl bcmath
+    && docker-php-ext-install gd pdo pdo_mysql
 
 # Instalar Composer
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
@@ -12,20 +20,20 @@ COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 # Directorio de trabajo
 WORKDIR /var/www
 
-# Copiar proyecto
+# Copiar archivos del proyecto
 COPY . .
+
+# Copiar configuración de Nginx
+COPY ./nginx.conf /etc/nginx/conf.d/default.conf
 
 # Instalar dependencias PHP
 RUN composer install --no-dev --optimize-autoloader
 
-# Dar permisos a storage y bootstrap
+# Permisos
 RUN chmod -R 777 storage bootstrap/cache
 
-# Copiar configuración de Nginx y Supervisor
-COPY ./nginx.conf /etc/nginx/conf.d/default.conf
-COPY ./supervisord.conf /etc/supervisor/conf.d/supervisord.conf
-
+# Exponer puertos
 EXPOSE 80
 
-# Supervisord arranca Nginx + PHP-FPM
-CMD ["/usr/bin/supervisord"]
+# Comando de inicio (levanta PHP-FPM y Nginx juntos)
+CMD service nginx start && php-fpm
