@@ -1,25 +1,18 @@
-# Imagen base con PHP y extensiones necesarias
-FROM php:8.2-cli
+FROM php:8.2-fpm
 
-# Instalar dependencias del sistema
+# Instalar dependencias del sistema y extensiones necesarias
 RUN apt-get update && apt-get install -y \
-    libpng-dev \
-    libjpeg-dev \
-    libfreetype6-dev \
-    zip \
-    unzip \
-    git \
-    curl \
+    unzip git curl libpng-dev libjpeg-dev libfreetype6-dev libonig-dev libxml2-dev zip libzip-dev nginx supervisor \
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
-    && docker-php-ext-install gd pdo pdo_mysql
+    && docker-php-ext-install gd pdo_mysql mbstring exif pcntl bcmath
 
 # Instalar Composer
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 
-# Configurar directorio de trabajo
+# Directorio de trabajo
 WORKDIR /var/www
 
-# Copiar archivos del proyecto
+# Copiar proyecto
 COPY . .
 
 # Instalar dependencias PHP
@@ -28,8 +21,11 @@ RUN composer install --no-dev --optimize-autoloader
 # Dar permisos a storage y bootstrap
 RUN chmod -R 777 storage bootstrap/cache
 
-# Exponer el puerto 80
+# Copiar configuración de Nginx y Supervisor
+COPY ./nginx.conf /etc/nginx/conf.d/default.conf
+COPY ./supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+
 EXPOSE 80
 
-# Comando para iniciar Laravel
-CMD ["php", "artisan", "serve", "--host=0.0.0.0", "--port=80"]
+# Supervisord arranca Nginx + PHP-FPM
+CMD ["/usr/bin/supervisord"]
