@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <link href="https://cdn.jsdelivr.net/npm/@n8n/chat/dist/style.css" rel="stylesheet" />
+  <style>
+    
+    .chat-window-wrapper .chat-window-toggle{
+        background: #4a0f6f;
+        bottom: 25px !important;
+    }
+    .chat-window-wrapper {
+      
+      bottom: 25px !important;
+      
+    }
+    .chat-window-wrapper .chat-window-toggle:hover{
+        background: #4a0f6f;
+    }
+    .chat-header {
+        background: #4a0f6f !important;
+    }
+
+    .chat-window {
+        border-radius: 25px !important;
+    }
+
+    .scroll-top.open{
+        left: 25px !important;
+        background: #4a0f6f !important;
+    }
+    
+    .scroll-top.style-two {
+        left: 25px !important;
+        background: #4a0f6f !important;
+    }
+    .chat-message.chat-message-from-user:not(.chat-message-transparent) {
+        
+        border-radius: 20px 20px 0px 20px !important;
+    }   
+
+    .chat-message.chat-message-from-bot:not(.chat-message-transparent) {
+        
+        border-radius: 20px 20px 20px 0px !important;
+    }
+    .chat-layout .chat-body{
+background-image: url(https://vgroup-content.vgroup.cl/2025/07/28/tsbt.png);
+background-repeat: repeat;
+}
+.chat-message.chat-message-from-bot:not(.chat-message-transparent) {
+background-color: #c2ecf0;
+border: var(--chat--message--bot--border);
+}
+@media (max-width: 768px) {
+
+  .chat-window-wrapper {
+      
+    bottom: px !important;
+  }    
+
+}
+  </style>
+</head>
+<body>
+  <script type="module">
+    import { createChat } from 'https://cdn.jsdelivr.net/npm/@n8n/chat/dist/chat.bundle.es.js';
+    createChat({
+      webhookUrl: 'https://tatsubot.makenafundas.com.ar/webhook/abf455f8-6fda-44a2-b4b1-c448911faf59/chat',
+      initialMessages: ['¡Hola! ✨', 'Soy tu asistente de Oasis ¿En qué te puedo ayudar?'],
+      i18n: {
+        defaultLanguage: 'es',
+        en: {
+          title: 'Estética Bot',
+          subtitle: 'Asistente de Oasis',
+          inputPlaceholder: 'Escribe tu pregunta...',
+        }
+      }
+    });
+  </script>
+  <script>
+    // Espera a que exista el botón del widget de n8n
+    function waitForToggle(maxMs = 8000) {
+      const start = Date.now();
+      return new Promise((resolve, reject) => {
+        const tryFind = () => {
+          const btn = document.querySelector('.chat-window-toggle');
+          if (btn) return resolve(btn);
+          if (Date.now() - start > maxMs) return reject(new Error('toggle no encontrado'));
+          setTimeout(tryFind, 200);
+        };
+        tryFind();
+      });
+    }
+  
+    // Chequear si el chat está abierto (n8n suele usar .chat-window-wrapper.open)
+    function isOpen() {
+      const wrapper = document.querySelector('.chat-window-wrapper');
+      return wrapper && wrapper.classList.contains('open');
+    }
+  
+    async function ensureOpen() {
+      const btn = await waitForToggle();
+      if (!isOpen()) btn.click();
+    }
+  
+    async function ensureClosed() {
+      const btn = await waitForToggle();
+      if (isOpen()) btn.click();
+    }
+  
+    async function toggleChat() {
+      const btn = await waitForToggle();
+      btn.click();
+    }
+  
+    // Escuchar órdenes desde el padre
+    window.addEventListener('message', async (event) => {
+      const action = event.data && event.data.action;
+      try {
+        if (action === 'abrirChat') await ensureOpen();
+        else if (action === 'cerrarChat') await ensureClosed();
+        else if (action === 'toggleChat') await toggleChat();
+      } catch (e) {
+        console.warn('[Chat iframe] No se pudo ejecutar acción:', action, e?.message);
+      }
+    });
+  </script>
+  
+  
+</body>
+</html>

@@ -74,4 +74,16 @@ class RespuestaBotController extends Controller
         return view('respuestas.tutorial', compact('datosBot', 'canal'));
     }
 
+    public function demo(Request $request)
+    {
+        $canal = $request->query('canal', 'whatsapp'); // Default canal
+        $userId = Auth::id();
+
+        $datosBot = RespuestaBot::where('user_id', $userId)
+                                ->where('canal', $canal)
+                                ->first();
+
+        return view('demonuevo', compact('datosBot', 'canal'));
+    }
+
 }

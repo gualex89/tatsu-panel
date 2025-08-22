@@ -55,6 +55,11 @@
 </head>
 
 <body>
+     <!-- Botón hamburguesa visible solo en mobile -->
+    
+
+    <!-- Overlay para cerrar tocando afuera -->
+    <div class="sidebar-backdrop d-lg-none" id="sidebarBackdrop"></div>
 
     <div class="sidebar text-center">
         <img style="width: 190px;" src="{{ asset('assets-login/images/logo_white.png') }}" alt="Logo">
@@ -91,6 +96,9 @@
 
 
     <div class="content">
+        <button class="btn btn-light border d-lg-none mb-3" type="button" id="btnSidebarToggle">
+            <i class="fa-solid fa-bars"></i> Menú
+        </button>
         <h2 class="mb-4">Configuración del Bot - {{ ucfirst($canal) }}</h2>
 
         @if (session('success'))
@@ -331,6 +339,41 @@
             });
         });
     </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+          const sidebar  = document.querySelector('.sidebar');
+          const btn      = document.getElementById('btnSidebarToggle');
+          const backdrop = document.getElementById('sidebarBackdrop');
+      
+          const openSidebar = () => {
+            sidebar.classList.add('sidebar-open');
+            backdrop.classList.add('show');
+            document.body.style.overflow = 'hidden';
+          };
+          const closeSidebar = () => {
+            sidebar.classList.remove('sidebar-open');
+            backdrop.classList.remove('show');
+            document.body.style.overflow = '';
+          };
+      
+          if (btn) btn.addEventListener('click', () => {
+            sidebar.classList.contains('sidebar-open') ? closeSidebar() : openSidebar();
+          });
+      
+          if (backdrop) backdrop.addEventListener('click', closeSidebar);
+      
+          // Cierra al navegar dentro de la sidebar
+          sidebar.addEventListener('click', (e) => {
+            if (e.target.closest('a')) closeSidebar();
+          });
+      
+          // Cierra con ESC
+          document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeSidebar();
+          });
+        });
+      </script>
+      
 
 
 

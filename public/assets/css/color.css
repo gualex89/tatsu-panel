@@ -960,11 +960,16 @@ h3 a:hover{
 }
 
 .header-style-six .header-lower:before{
-	background: -webkit-linear-gradient(50deg, #4a0f6f, #640d83 100%);
+	background: linear-gradient(
+    50deg,
+    #4a0f6f 0%,
+    #640d83 50%,
+    #4a0f6f 100%
+  );
 	border-radius: 0px 0px 25px 25px;
 }
 
-.header-style-six .header-lower:after{
+.header-style-six .header-lower{
 	background-color: #4a0f6f;
 }
 

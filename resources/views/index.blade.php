@@ -32,78 +32,80 @@
   <link href="assets/css/jquery.fancybox.min.css" rel="stylesheet">
   <link href="assets/css/animate.css" rel="stylesheet">
   <link href="assets/css/color.css" rel="stylesheet">
-  <link href="assets/css/responsive.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   
   <link href="https://cdn.jsdelivr.net/npm/@n8n/chat/dist/style.css" rel="stylesheet" />
   <script type="module">
-	import { createChat } from 'https://cdn.jsdelivr.net/npm/@n8n/chat/dist/chat.bundle.es.js';
+      import { createChat } from 'https://cdn.jsdelivr.net/npm/@n8n/chat/dist/chat.bundle.es.js';
+      
+      createChat({
+          webhookUrl: 'https://tatsubot.makenafundas.com.ar/webhook/ce56c971-443b-4aa4-999f-96271b0102e8/chat',
+          initialMessages : [ 
+              '¡Hola! 👋' , 
+              'Mi nombre es TatsuBot. ¿Cómo puedo ayudarte hoy?' 
+            ] ,
+            i18n : { 
+                en : { 
+                    title : 'Tatsu Bot 🤖' , 
+                    subtitle :  '' ,
+                    footer : '' , 
+                    getStarted : 'Nueva conversación' , 
+                    inputPlaceholder : 'Escribe tu pregunta..' , 
+                } , 
+                defaultLanguage : 'es' ,
+                
+            } 
+        });
+        </script>
+    <link href="./assets/css/style-v2.css" rel="stylesheet">
+    <link href="assets/css/responsive.css" rel="stylesheet">
 
-	createChat({
-		webhookUrl: 'https://n8n2gus.vgroup.cl/webhook/ce56c971-443b-4aa4-999f-96271b0102e8/chat',
-        initialMessages : [ 
-            '¡Hola! 👋' , 
-            'Mi nombre es TatsuBot. ¿Cómo puedo ayudarte hoy?' 
-        ] ,
-        i18n : { 
-            en : { 
-                title : 'Tatsu Bot 🤖' , 
-                subtitle :  '' ,
-                footer : '' , 
-                getStarted : 'Nueva conversación' , 
-                inputPlaceholder : 'Escribe tu pregunta..' , 
-            } , 
-            defaultLanguage : 'es' ,
+    <style>
+        .chat-window-wrapper .chat-window-toggle{
+            background: #4a0f6f;
+        }
+        .chat-window-wrapper .chat-window-toggle:hover{
+            background: #4a0f6f;
+        }
+        .chat-header {
+            background: #4a0f6f !important;
+        }
+
+        .chat-window {
+            border-radius: 25px !important;
+        }
+
+        .scroll-top.open{
+            left: 25px !important;
+            background: #4a0f6f !important;
+        }
         
-	    } 
-	});
-</script>
-<link href="./assets/css/style-v2.css" rel="stylesheet">
+        .scroll-top.style-two {
+            left: 25px !important;
+            background: #4a0f6f !important;
+        }
+        .chat-message.chat-message-from-user:not(.chat-message-transparent) {
+            
+            border-radius: 20px 20px 0px 20px !important;
+        }   
 
-<style>
-    .chat-window-wrapper .chat-window-toggle{
-        background: #4a0f6f;
+        .chat-message.chat-message-from-bot:not(.chat-message-transparent) {
+            
+            border-radius: 20px 20px 20px 0px !important;
+        }
+        .chat-layout .chat-body{
+    background-image: url(https://vgroup-content.vgroup.cl/2025/07/28/tsbt.png);
+    background-repeat: repeat;
     }
-    .chat-window-wrapper .chat-window-toggle:hover{
-        background: #4a0f6f;
-    }
-    .chat-header {
-        background: #4a0f6f !important;
-    }
-
-    .chat-window {
-        border-radius: 25px !important;
-    }
-
-    .scroll-top.open{
-        left: 25px !important;
-        background: #4a0f6f !important;
-    }
-    
-    .scroll-top.style-two {
-        left: 25px !important;
-        background: #4a0f6f !important;
-    }
-    .chat-message.chat-message-from-user:not(.chat-message-transparent) {
-        
-        border-radius: 20px 20px 0px 20px !important;
-    }   
-
     .chat-message.chat-message-from-bot:not(.chat-message-transparent) {
-        
-        border-radius: 20px 20px 20px 0px !important;
-    }
-    .chat-layout .chat-body{
-        background-image: url(https://vgroup-content.vgroup.cl/2025/07/28/tsbt.png);
-        background-repeat: repeat;
-    }
-    .chat-message.chat-message-from-bot:not(.chat-message-transparent) {
-        background-color: #c2ecf0;
-        border: var(--chat--message--bot--border);
+    background-color: #c2ecf0;
+    border: var(--chat--message--bot--border);
     }
 
-
-
-</style>
+    </style>
 </head>
 
 
@@ -117,7 +119,7 @@
         <div class="modal-content" style="background: none; border: none;">
         <div class="modal-body p-0">
             <iframe 
-            src="https://n8n2gus.vgroup.cl/form/contactame" 
+            src="https://tatsubot.makenafundas.com.ar/form/contactame" 
             width="100%" 
             height="700" 
             style="border:none; overflow:auto; display:block;">
@@ -138,81 +140,48 @@
         <header class="main-header header-style-six">
             <!-- header-lower -->
             <div class="header-lower">
-                <div class="auto-container">
-                    <div class="outer-box clearfix">
-                        <div class="logo-box pull-left" style="display: flex; align-items: center; justify-content: center; height: 100%;">
-                            <figure style="width: 200px; height: auto;" class="logo"><a href="index-6.html"><img src="assets/images/logo-tatsu-white.png" alt=""></a></figure>
-                        </div>
-                        <div class="menu-area pull-right clearfix">
-                            <!--Mobile Navigation Toggler-->
-                            <div class="mobile-nav-toggler">
-                                <i class="icon-bar"></i>
-                                <i class="icon-bar"></i>
-                                <i class="icon-bar"></i>
-                            </div>
-                            <nav class="main-menu navbar-expand-md navbar-light">
-                                <div class="collapse navbar-collapse show clearfix" id="navbarSupportedContent">
-                                    <ul class="navigation clearfix">
-                                        <li class=""><a href="#home">Home</a>
-                                            
-                                        </li>
-                                        <li class=""><a href="#beneficios">Beneficios</a>
-                                        
-                                        </li>
-                                            
-                                        
-                                        <li class=""><a href="#como-funciona">Cómo funciona</a>
-                                            
-                                        </li> 
-                                        <li class=""><a href="#precios">Precios</a>
-                                            
-                                        </li> 
-                                        <li class=""><a href="#testimonios">Testimonios</a>
-                                            
-                                        </li> 
-                                        
-                                    </ul>
-                                </div>
-                            </nav>
-                            <div class="nav-right-content clearfix">
-                                
-                                <div class="btn-box">
-                                    <a href="#" class="theme-btn btn-ten" data-bs-toggle="modal" data-bs-target="#formModal">Contactame</a>
-                                    <a href="{{ route('login') }}" class="theme-btn btn-eight">Ingresar<i class="fas fa-sign-in-alt"></i></a>
-                                  </div>
-                            </div>
-                        </div>
+              <div class="auto-container">
+                <div class="outer-box clearfix">
+                  <div class="logo-box pull-left">
+                    <figure style="width: 180px; height: auto;" class="logo">
+                      <a href="/"><img src="assets/images/logo-tatsu-white.png" alt=""></a>
+                    </figure>
+                  </div>
+          
+                  <div class="menu-area pull-right clearfix">
+                    <!--Mobile Navigation Toggler-->
+                    <div class="mobile-nav-toggler">
+                      <i class="icon-bar"></i>
+                      <i class="icon-bar"></i>
+                      <i class="icon-bar"></i>
                     </div>
-                </div>
-            </div>
-
-            <!--sticky Header-->
-            <div class="sticky-header">
-                <div class="auto-container">
-                    <div class="outer-box clearfix">
-                        <figure class="sticky-logo pull-left">
-                            <a href="index.html"><img src="assets/images/logo-tatsu-white.png" style="width: 180px; height: auto;" alt=""></a>
-                        </figure>
-                        <div class="menu-area pull-right clearfix">
-                            <nav class="main-menu clearfix">
-                                <!--Keep This Empty / Menu will come through Javascript-->
-                            </nav>
-                        </div>
+          
+                    <nav class="main-menu navbar-expand-md navbar-light">
+                      <div class="collapse navbar-collapse show clearfix" id="navbarSupportedContent">
+                        <ul class="navigation clearfix">
+                          <li><a href="#home">Home</a></li>
+                          <li><a href="#beneficios">Beneficios</a></li>
+                          <li><a href="#como-funciona">Cómo funciona</a></li>
+                          <li><a href="#precios">Precios</a></li>
+                          <li><a href="#testimonios">Testimonios</a></li>
+                        </ul>
+                      </div>
+                    </nav>
+          
+                    <div class="nav-right-content clearfix">
+                      <div class="btn-box d-none d-lg-inline-flex align-items-center gap-2">
+                        <a href="#" class="theme-btn btn-ten" data-bs-toggle="modal" data-bs-target="#formModal">Contactame</a>
+                        <a href="{{ route('login') }}" class="theme-btn btn-eight ml-2">
+                          Ingresar <i class="fas fa-sign-in-alt"></i>
+                        </a>
+                      </div>
                     </div>
+          
+                  </div>
                 </div>
+              </div>
             </div>
         </header>
-
-        <!-- <section class="video-banner">
-            <video autoplay muted loop playsinline class="video-background">
-              <source src="assets/video/7277928-uhd_3840_2160_25fps.mp4" type="video/mp4">
-              Tu navegador no soporta el tag de video.
-            </video>
-            <div class="overlay-content">
-              <h1>Automatizá tu atención con IA</h1>
-              <p>Conectá tu tienda con WhatsApp e Instagram 24/7</p>
-            </div>
-          </section> -->
           
         <!-- main-header end -->
 
@@ -223,6 +192,12 @@
             
             <nav class="menu-box">
                 <div class="nav-logo"><a href="index.html"><img src="assets/images/logo-tatsu-white.png" alt="" title=""></a></div>
+
+                <div class="mobile-quick-actions my-3 d-flex align-items-center">
+                    <a href="#" class="theme-btn btn-ten btn-mobile-mini me-2" data-bs-toggle="modal" data-bs-target="#formModal">Contactame</a>
+                    <a href="{{ route('login') }}" class="theme-btn btn-eight btn-mobile-mini">Ingresar <i class="fas fa-sign-in-alt"></i></a>
+                </div>
+
                 <div class="menu-outer"><!--Here Menu Will Come Automatically Via Javascript / Same Menu as in Header--></div>
                 <div class="contact-info">
                     <h4>Informacion de Contacto</h4>
@@ -523,7 +498,7 @@
                                         <p>Plan pro ideal para empezar</p>
                                     </div>
                                     <div class="pricing-box">
-                                        <h2><span>$</span>45</h2>
+                                        <h2><span>$</span>79</h2>
                                         <p>Por mes</p>
                                     </div>
                                     <div class="links-box">
@@ -563,7 +538,7 @@
                                         <p>Perfecto para negocios en crecimiento</p>
                                     </div>
                                     <div class="pricing-box">
-                                        <h2><span>$</span>65</h2>
+                                        <h2><span>$</span>109</h2>
                                         <p>por mes</p>
                                     </div>
                                     <div class="links-box">
@@ -749,13 +724,14 @@
                 <div class="col-lg-4 col-md-6 col-sm-12 footer-column">
                     <div class="footer-widget about-widget">
                         <div class="text">
-                            <h3>Solicita una Demo</h3>
-                            <p>Probá cómo tu negocio puede atender mejor a los clientes con un asistente automatizado hecho a tu medida.</p>
+                            <h3>Ver Demo</h3>
+                            <p>Prueba como funcionan nuestros asistentes inteligentes</p>
                         </div>
                         <div class="btn-box">
-                            <a href="https://wa.me/56967656673?text=Hola,%20quiero%20ver%20una%20demonstración%20de%20TatsuBot." class="theme-btn btn-ten" target="_blank">
-                                   Solicitar ahora
-                                </a>
+                            <a href="/demo"
+                                class="theme-btn btn-ten">
+                                Ver demo
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -768,10 +744,10 @@
                         <div class="widget-content">
                             <ul class="links-list clearfix">
                                 <li><a href="#beneficios">Beneficios</a></li>
-                                <li><a href="#funcionalidades">Funcionalidades</a></li>
-                                <li><a href="#clientes">Clientes</a></li>
+                                <li><a href="#como-funciona">¿Cómo funciona?</a></li>
                                 <li><a href="#precios">Precios</a></li>
-                                <li><a href="#faq">Preguntas Frecuentes</a></li>
+                                <li><a href="#testimonios">Testimonios</a></li>
+                                
                             </ul>
                         </div>
                     </div>
@@ -851,109 +827,118 @@
     <!-- main-js -->
     <script src="assets/js/script.js"></script>
     <script>
-        $(document).ready(function() {
-            $(".client-testimonial-carousel").owlCarousel({
-                items: 1,                  // Un solo testimonio a la vez
-                loop: true,                // Repite infinito
-                autoplay: true,            // Cambia automáticamente
-                autoplayTimeout: 5000,     // Tiempo entre slides
-                autoplayHoverPause: true,  // Pausa si se pasa el mouse encima
-                smartSpeed: 600,           // Suavidad en la transición
-                nav: false,                // Oculta flechas
-                dots: true,                // Muestra los puntos abajo
-                margin: 30                 // Espaciado entre slides
-                });
-                $('.beneficios-carousel').owlCarousel({
-                loop: true,
-                margin: 30,
-                nav: true,
-                dots: true,
-                autoplay: true,
-                autoplayTimeout: 5000,
-                smartSpeed: 600,
-                responsive: {
-                    0: { items: 1 },
-                    768: { items: 2 },
-                    992: { items: 2 },
-                    1200: { items: 2 }
-                }
+    document.addEventListener('DOMContentLoaded', function () {
+        $(".client-testimonial-carousel").owlCarousel({
+            items: 1,                  // Un solo testimonio a la vez
+            loop: true,                // Repite infinito
+            autoplay: true,            // Cambia automáticamente
+            autoplayTimeout: 5000,     // Tiempo entre slides
+            autoplayHoverPause: true,  // Pausa si se pasa el mouse encima
+            smartSpeed: 600,           // Suavidad en la transición
+            nav: false,                // Oculta flechas
+            dots: true,                // Muestra los puntos abajo
+            margin: 30                 // Espaciado entre slides
             });
+            $('.beneficios-carousel').owlCarousel({
+            loop: true,
+            margin: 30,
+            nav: true,
+            dots: true,
+            autoplay: true,
+            autoplayTimeout: 5000,
+            smartSpeed: 600,
+            responsive: {
+                0: { items: 1 },
+                768: { items: 2 },
+                992: { items: 2 },
+                1200: { items: 2 }
+            }
         });
 
-        
-        $(document).ready(function() {
-            // Cierra el menú móvil al hacer clic en un enlace
-            $('.mobile-menu .menu-box a[href^="#"]').on('click', function() {
-            $('.mobile-menu').removeClass('menu-opened'); // oculta el menú
-            $('body').removeClass('mobile-menu-visible'); // elimina clase que muestra el menú
-            $('.menu-backdrop').fadeOut(300); // oculta el fondo oscuro
-            });
-
-            $('a[href="#beneficios"]').on('click', function(e) {
-                e.preventDefault(); // Evita el scroll automático
-
-                // Detecta si está en pantalla chica
-                if (window.innerWidth < 992) {
-                    // Mobile: scroll a beneficiosMobile
-                    $('html, body').animate({
+        $('.mobile-menu .menu-box a[href^="#"]').on('click', function () {
+            $('.mobile-menu').removeClass('menu-opened');
+            $('body').removeClass('mobile-menu-visible');
+            $('.menu-backdrop').fadeOut(300);
+        });
+    
+        $('a[href="#beneficios"]').on('click', function (e) {
+            e.preventDefault();
+    
+            if (window.innerWidth < 992) {
+                $('html, body').animate({
                     scrollTop: $('#beneficiosMobile').offset().top
-                    }, 600);
-                } else {
-                    // Desktop: scroll a beneficios
-                    $('html, body').animate({
+                }, 600);
+            } else {
+                $('html, body').animate({
                     scrollTop: $('#beneficios').offset().top
-                    }, 600);
-                }
-
-                // Cierra el menú móvil si está visible
-                $('.mobile-menu').removeClass('menu-opened');
-                $('body').removeClass('mobile-menu-visible');
-                $('.menu-backdrop').fadeOut(300);
-            });
-
+                }, 600);
+            }
+    
+            $('.mobile-menu').removeClass('menu-opened');
+            $('body').removeClass('mobile-menu-visible');
+            $('.menu-backdrop').fadeOut(300);
         });
+        const intervalVideo = setInterval(() => {
+            const toggleBtn = document.querySelector('.chat-window-wrapper .chat-window-toggle');
+            if (!toggleBtn || toggleBtn.querySelector('video')) return;
+    
+            const svgIcon = toggleBtn.querySelector('svg');
+            if (svgIcon) svgIcon.style.display = 'none';
+    
+            const vid = document.createElement('video');
+            vid.src = '/assets/malebot-saluda.mp4';
+            vid.autoplay = true;
+            vid.loop = false;
+            vid.muted = true;
+            vid.playsInline = true;
+            vid.style.width = '100%';
+            vid.style.height = '100%';
+            vid.style.borderRadius = '50%';
+            vid.style.objectFit = 'cover';
+            vid.style.pointerEvents = 'none';
+    
+            vid.addEventListener('ended', () => {
+                vid.currentTime = 0;
+                vid.pause();
+                setTimeout(() => {
+                    vid.play().catch(() => { });
+                }, 15000);
+            });
+    
+            vid.addEventListener('loadeddata', () => vid.play().catch(() => { }));
+    
+            toggleBtn.appendChild(vid);
+            clearInterval(intervalVideo);
+        }, 500);
 
+        document.addEventListener('click', function (event) {
+            const chatWindow = document.querySelector('.chat-window-wrapper .chat-window');
+            const chatToggle = document.querySelector('.chat-window-wrapper .chat-window-toggle');
+
+            if (!chatWindow || !chatToggle) return;
+
+            const isVisible = getComputedStyle(chatWindow).display !== 'none';
+
+            if (isVisible &&
+                !chatWindow.contains(event.target) &&
+                !chatToggle.contains(event.target)) {
+                chatToggle.click();
+            }
+        });
+    });
 </script>
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
-            const interval = setInterval(() => {
-                const toggleBtn = document.querySelector('.chat-window-wrapper .chat-window-toggle');
-                if (!toggleBtn || toggleBtn.querySelector('video')) return;
-
-                // Oculta el ícono por defecto
-                const svgIcon = toggleBtn.querySelector('svg');
-                if (svgIcon) svgIcon.style.display = 'none';
-
-                // Crea el video
-                const vid = document.createElement('video');
-                vid.src = '/assets/malebot-saluda.mp4'; // <— asegúrate del nombre correcto
-                vid.autoplay = true;
-                vid.loop = false; // no repetir automáticamente
-                vid.muted = true; // necesario para autoplay
-                vid.playsInline = true; // iOS
-                vid.style.width = '100%';
-                vid.style.height = '100%';
-                vid.style.borderRadius = '50%';
-                vid.style.objectFit = 'cover';
-                vid.style.pointerEvents = 'none'; // no bloquear el click del botón
-
-                // Al terminar: volver al inicio, pausar, y reproducir después de 10s
-                vid.addEventListener('ended', () => {
-                    vid.currentTime = 0; // primer frame
-                    vid.pause();
-                    setTimeout(() => {
-                        vid.play().catch(() => {});
-                    }, 15000); // 15 segundos
-                });
-
-                // Si el navegador bloquea autoplay, intenta al cargar
-                vid.addEventListener('loadeddata', () => vid.play().catch(() => {}));
-
-                toggleBtn.appendChild(vid);
-                clearInterval(interval); // deja de buscar
-            }, 500); // revisa cada 500ms
-        });
-    </script>
+    (function() {
+      const header = document.querySelector('.main-header.header-style-six');
+      function fixBodyPadding(){
+        if(!header) return;
+        document.body.style.paddingTop = header.offsetHeight + 'px';
+      }
+      window.addEventListener('load', fixBodyPadding);
+      window.addEventListener('resize', fixBodyPadding);
+    })();
+  </script>
+  
 
 <!-- Modal del formulario -->
 

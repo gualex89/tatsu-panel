@@ -43,6 +43,7 @@ Route::middleware('auth')->group(function () {
 
 
 Route::post('/clavija', [BotConfigController::class, 'clavija'])->name('clavija.update');
+Route::get('/demo', [RespuestaBotController::class, 'demo'])->name('demo');
 
 
 Route::group(['prefix' => 'admin'], function () {

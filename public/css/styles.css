@@ -34,7 +34,6 @@ body {
 
 .button-36 {
   background-image: linear-gradient(0deg, #56026e 10%, #56026e 45%, #56026e 75%);
-
   border-radius: 8px;
   border-style: none;
   box-sizing: border-box;
@@ -56,13 +55,12 @@ body {
 
 .button-36:hover {
   box-shadow: 0 10px 10px -5px rgba(66, 66, 68, 0.5);
-
   transition-duration: .1s;
 }
 
 @media (min-width: 768px) {
   .button-36 {
-      padding: 0 2.6rem;
+    padding: 0 2.6rem;
   }
 }
 
@@ -93,12 +91,10 @@ body {
 }
 
 .chat-message.chat-message-from-user:not(.chat-message-transparent) {
-
   border-radius: 20px 20px 0px 20px !important;
 }
 
 .chat-message.chat-message-from-bot:not(.chat-message-transparent) {
-
   border-radius: 20px 20px 20px 0px !important;
 }
 
@@ -113,27 +109,16 @@ body {
 }
 
 @keyframes pulse {
-  0% {
-      box-shadow: 0 0 0 0 rgba(102, 51, 153, 0.4);
-  }
-
-  70% {
-      box-shadow: 0 0 0 10px rgba(102, 51, 153, 0);
-  }
-
-  100% {
-      box-shadow: 0 0 0 0 rgba(102, 51, 153, 0);
-  }
+  0% { box-shadow: 0 0 0 0 rgba(102, 51, 153, 0.4); }
+  70% { box-shadow: 0 0 0 10px rgba(102, 51, 153, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(102, 51, 153, 0); }
 }
 
-.chat-window-toggle {
-  animation: pulse 2s infinite;
-}
+.chat-window-toggle { animation: pulse 2s infinite; }
 
 .texto-prueba-bot {
   position: fixed;
   bottom: 90px;
-  /* justo encima del botón (ajusta si el botón cambia de tamaño) */
   right: 30px;
   background: white;
   color: #333;
@@ -146,17 +131,9 @@ body {
   animation: fadeInUp 0.4s ease;
 }
 
-/* animación opcional */
 @keyframes fadeInUp {
-  from {
-      opacity: 0;
-      transform: translateY(8px);
-  }
-
-  to {
-      opacity: 1;
-      transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 .chat-window-wrapper .chat-window-toggle svg {
@@ -168,23 +145,93 @@ body {
   overflow: visible !important;
   width: 104px;
   height: 104px;
-  /* right: 80px;  */
-  /* permitir que elementos ::after salgan */
 }
 
 .chat-window-wrapper .chat-window-toggle::after {
   content: '';
   position: absolute;
   top: 3px;
-  /* arriba del círculo */
   left: 4px;
-  /* a la izquierda del círculo */
   width: 10px;
   height: 10px;
   background-color: #00ff00;
-  /* verde */
-  /*  border: 2px solid white; */
-  /* borde para contraste */
   border-radius: 50%;
   z-index: 10;
 }
+
+/* =========================
+   ===== Mejora MOBILE =====
+   ========================= */
+@media (max-width: 991.98px) {
+  /* Sidebar como off-canvas */
+  .sidebar {
+    position: fixed;
+    top: 0; left: 0; bottom: 0;
+    width: 85%;
+    max-width: 340px;
+    transform: translateX(-100%);
+    transition: transform .25s ease;
+    z-index: 1051;
+    overflow-y: auto;
+  }
+  .sidebar.sidebar-open {
+    transform: translateX(0);
+  }
+
+  /* Contenido full-width y padding más compacto */
+  .content {
+    padding: 20px 16px;
+  }
+
+  /* Botón hamburguesa */
+  .sidebar-toggle {
+    position: fixed;
+    top: 14px;
+    left: 14px;
+    z-index: 1052;
+  }
+
+  /* Overlay */
+  .sidebar-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,.35);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .2s ease;
+    z-index: 1050;
+  }
+  .sidebar-backdrop.show {
+    opacity: 1;
+    pointer-events: all;
+  }
+
+  /* Logo y botones dentro de la sidebar */
+  .sidebar img { max-width: 75%; height: auto; }
+
+  /* Repeater: columnas apiladas */
+  .repeater [data-repeater-item] .col-md-5,
+  .repeater [data-repeater-item] .col-md-2 {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+  .repeater [data-repeater-item] .col-md-2 .btn {
+    width: 100%;
+  }
+
+  /* Botón guardar a ancho completo */
+  .button-36 { width: 100%; }
+
+  .chat-window-wrapper .chat-window-toggle {
+    
+    width: 70px;
+    height: 70px;
+  }
+}
+
+/* Ajuste extra para móviles muy pequeños */
+@media (max-width: 575.98px) {
+  .content h2 { font-size: 1.2rem; margin-bottom: .75rem; }
+  
+}
+

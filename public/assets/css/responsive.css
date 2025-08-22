@@ -1654,6 +1654,12 @@
     padding-left: 0px;
     margin-bottom: 30px;
   }
+  .chat-window-wrapper .chat-window-toggle {
+    
+    width: 70px;
+    height:70px;
+    
+  }
 
 }
 
@@ -2184,6 +2190,22 @@
 
   .blog-details-content .inner-box .lower-content{
     padding-left: 30px;
+  }
+  .header-style-six .menu-area .mobile-nav-toggler {
+    float: none !important;   /* que no lo saque del layout */
+    display: block !important;
+    margin-top: 20px;         /* ajusta según tu header */
+    cursor: pointer;
+  }
+  
+  /* Barritas blancas siempre */
+  .header-style-six .mobile-nav-toggler .icon-bar {
+    display: block;
+    width: 26px;
+    height: 3px;
+    margin: 5px 0;
+    background-color: #fff;   /* blanco para contrastar */
+    border-radius: 2px;
   }
 
 }

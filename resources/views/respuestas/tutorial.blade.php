@@ -68,9 +68,10 @@
 
     <div class="content">
         <div class="container py-4">
+            <h2 class="text-center font-weight-bold mb-4">Tutorial de Configuración</h2>
             
     
-            <div class="mx-auto" style="max-width: 1020px;">
+            <div class="mx-auto" style="max-width: 940px;">
                 <div class="ratio ratio-16x9">
                     <iframe
                         src="https://www.youtube.com/embed/VomS4CU4PJc?rel=0&modestbranding=1"
