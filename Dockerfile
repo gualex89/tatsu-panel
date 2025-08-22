@@ -1,7 +1,7 @@
 # Imagen base
 FROM php:8.2-fpm
 
-# Instalar dependencias del sistema
+# Instalar dependencias
 RUN apt-get update && apt-get install -y \
     libpng-dev \
     libjpeg-dev \
@@ -23,7 +23,7 @@ WORKDIR /var/www
 # Copiar archivos del proyecto
 COPY . .
 
-# Copiar configuración de Nginx
+# 👉 Copiar tu configuración personalizada de Nginx
 COPY ./nginx.conf /etc/nginx/conf.d/default.conf
 
 # Instalar dependencias PHP
@@ -32,8 +32,8 @@ RUN composer install --no-dev --optimize-autoloader
 # Permisos
 RUN chmod -R 777 storage bootstrap/cache
 
-# Exponer puertos
+# Exponer el puerto 80
 EXPOSE 80
 
-# Comando de inicio (levanta PHP-FPM y Nginx juntos)
-CMD service nginx start && php-fpm
+# Comando de inicio
+CMD ["sh", "-c", "service nginx start && php-fpm"]
