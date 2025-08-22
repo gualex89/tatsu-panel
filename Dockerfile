@@ -1,33 +1,30 @@
-# Imagen base con PHP 8.1 y FPM
-FROM php:8.1-fpm
+FROM php:8.2-fpm
 
-# Instalar dependencias del sistema y extensiones necesarias para Laravel + Voyager
+# Instalar dependencias del sistema
 RUN apt-get update && apt-get install -y \
-    unzip git curl libpng-dev libonig-dev libxml2-dev zip libzip-dev nginx supervisor \
-    && docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd
+    libpng-dev \
+    libjpeg-dev \
+    libfreetype6-dev \
+    zip \
+    git \
+    unzip \
+    curl \
+    && docker-php-ext-configure gd --with-freetype --with-jpeg \
+    && docker-php-ext-install gd pdo pdo_mysql
 
 # Instalar Composer
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 
-# Directorio de trabajo
-WORKDIR /var/www/html
+# Configurar directorio de trabajo
+WORKDIR /var/www
 
-# Copiar archivos del proyecto
+# Copiar archivos
 COPY . .
 
-# Instalar dependencias de Laravel
-RUN composer install --no-dev --optimize-autoloader && \
-    php artisan key:generate && \
-    php artisan storage:link
+# Instalar dependencias PHP (sin correr artisan todavía)
+RUN composer install --no-dev --optimize-autoloader
 
-# Copiar configuración de Nginx
-COPY ./nginx.conf /etc/nginx/conf.d/default.conf
+# Dar permisos a storage y bootstrap
+RUN chmod -R 777 storage bootstrap/cache
 
-# Copiar configuración de supervisord
-COPY ./supervisord.conf /etc/supervisor/conf.d/supervisord.conf
-
-# Exponer puerto 80
-EXPOSE 80
-
-# Ejecutar supervisord (arranca nginx + php-fpm)
-CMD ["/usr/bin/supervisord"]
+CMD ["php-fpm"]
