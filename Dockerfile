@@ -1,4 +1,4 @@
-# Imagen base
+# Imagen base PHP con FPM
 FROM php:8.2-fpm
 
 # Instalar dependencias
@@ -20,10 +20,10 @@ COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 # Directorio de trabajo
 WORKDIR /var/www
 
-# Copiar archivos del proyecto
+# Copiar proyecto
 COPY . .
 
-# 👉 Copiar tu configuración personalizada de Nginx
+# Copiar configuración personalizada de Nginx
 COPY ./nginx.conf /etc/nginx/conf.d/default.conf
 
 # Instalar dependencias PHP
@@ -32,8 +32,8 @@ RUN composer install --no-dev --optimize-autoloader
 # Permisos
 RUN chmod -R 777 storage bootstrap/cache
 
-# Exponer el puerto 80
+# Exponer puerto
 EXPOSE 80
 
-# Comando de inicio
-CMD ["sh", "-c", "service nginx start && php-fpm"]
+# Comando de inicio: iniciar PHP-FPM y Nginx en foreground
+CMD service php8.2-fpm start && nginx -g 'daemon off;'
