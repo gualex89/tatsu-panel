@@ -22,15 +22,22 @@ WORKDIR /var/www
 # Copiar proyecto
 COPY . .
 
+# 🔥 Eliminar configuraciones y archivos de Nginx por defecto
+RUN rm -f /etc/nginx/sites-enabled/default \
+    && rm -f /etc/nginx/sites-available/default \
+    && rm -f /usr/share/nginx/html/index.html
+
 # Copiar configuración de Nginx
 COPY ./nginx.conf /etc/nginx/conf.d/default.conf
 
 # Copiar configuración de Supervisor
 COPY ./supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
+# Instalar dependencias PHP y permisos
 RUN composer install --no-dev --optimize-autoloader \
     && chmod -R 777 storage bootstrap/cache
 
 EXPOSE 80
 
+# Iniciar supervisord (nginx + php-fpm)
 CMD ["supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]
