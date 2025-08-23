@@ -1,6 +1,6 @@
-FROM php:8.2-fpm
+FROM php:8.2-apache
 
-# Instalar dependencias
+# Instalar dependencias del sistema
 RUN apt-get update && apt-get install -y \
     libpng-dev \
     libjpeg-dev \
@@ -9,35 +9,30 @@ RUN apt-get update && apt-get install -y \
     git \
     unzip \
     curl \
-    nginx \
-    supervisor \
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
-    && docker-php-ext-install gd pdo pdo_mysql
+    && docker-php-ext-install gd pdo pdo_mysql bcmath
+
+# Habilitar mod_rewrite para Laravel
+RUN a2enmod rewrite
 
 # Instalar Composer
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 
-WORKDIR /var/www
+# Establecer directorio de trabajo
+WORKDIR /var/www/html
 
-# Copiar proyecto
+# Copiar archivos del proyecto
 COPY . .
 
-# 🔥 Eliminar configuraciones y archivos de Nginx por defecto
-RUN rm -f /etc/nginx/sites-enabled/default \
-    && rm -f /etc/nginx/sites-available/default \
-    && rm -f /usr/share/nginx/html/index.html
-
-# Copiar configuración de Nginx
-COPY ./nginx.conf /etc/nginx/conf.d/default.conf
-
-# Copiar configuración de Supervisor
-COPY ./supervisord.conf /etc/supervisor/conf.d/supervisord.conf
-
-# Instalar dependencias PHP y permisos
+# Instalar dependencias de Laravel
 RUN composer install --no-dev --optimize-autoloader \
-    && chmod -R 777 storage bootstrap/cache
+    && chown -R www-data:www-data /var/www/html \
+    && chmod -R 775 storage bootstrap/cache
 
+# Configuración de Apache para Laravel
+COPY ./docker/laravel.conf /etc/apache2/sites-available/000-default.conf
+
+# Exponer el puerto
 EXPOSE 80
 
-# Iniciar supervisord (nginx + php-fpm)
-CMD ["supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]
+CMD ["apache2-foreground"]
