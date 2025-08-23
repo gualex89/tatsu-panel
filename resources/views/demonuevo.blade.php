@@ -426,7 +426,7 @@
                 <!-- BOT 1: Tienda Deportiva -->
                 <div class="col-md-6">
                     <div class="bot-box">
-                        <img src="/assets/images/tienda-deportiva.png" alt="Bot Tienda Deportiva">
+                        <img src="assets/images/tienda-deportiva.png" alt="Bot Tienda Deportiva">
 
                         <div class="overlay d-flex flex-column justify-content-center align-items-center text-center">
                             <h5 class="fw-bold mb-2">Asistente Tienda Deportiva</h5>
@@ -453,11 +453,11 @@
         </div>
 
         <!-- Chats fijos -->
-        <iframe id="chat-tienda" src="/chat-tienda.html"
+        <iframe id="chat-tienda" src="chat-tienda.html"
             style="position: fixed; bottom: 5px; left: 25px; width: 360px; height: 600px; border: none; z-index: 2000;">
         </iframe>
 
-        <iframe id="chat-estetica" src="/chat-estetica.html"
+        <iframe id="chat-estetica" src="chat-estetica.html"
             style="position: fixed; bottom: 5px; right: 25px; width: 360px; height: 600px; border: none; z-index: 2000;">
         </iframe>
 
