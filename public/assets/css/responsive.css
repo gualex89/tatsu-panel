@@ -229,6 +229,11 @@
     visibility:hidden;
     opacity:0;
   }
+  .menu-area .mobile-nav-toggler {
+    display: block !important;
+    padding: 10px;
+    margin-top: 8px;
+  }
 }
 
 
@@ -879,6 +884,12 @@
   .banner-section .content-box h2{
     font-size: 36px;
     line-height: 46px;
+  }
+  .header-style-six .menu-area .mobile-nav-toggler {
+    float: none !important;   /* que no lo saque del layout */
+    display: block !important;
+    margin-top: 20px;         /* ajusta según tu header */
+    cursor: pointer;
   }
 
   .sec-title h2{
