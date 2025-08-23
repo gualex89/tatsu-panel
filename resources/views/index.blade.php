@@ -509,7 +509,8 @@
                                         <p>Plan pro ideal para empezar</p>
                                     </div>
                                     <div class="pricing-box">
-                                        <h2><span>$</span>79</h2>
+                                        
+                                        <h3 id="precio-pro"><span>$</span></h3>
                                         <p>Por mes</p>
                                     </div>
                                     <div class="links-box">
@@ -549,7 +550,7 @@
                                         <p>Perfecto para negocios en crecimiento</p>
                                     </div>
                                     <div class="pricing-box">
-                                        <h2><span>$</span>109</h2>
+                                        <h3 id="precio-premium"><span>$</span></h3>
                                         <p>por mes</p>
                                     </div>
                                     <div class="links-box">
@@ -588,7 +589,10 @@
                                         <h3>Custom</h3>
                                         <p>Solución a medida para tu negocio</p>
                                     </div>
+                                    
                                     <div class="pricing-box">
+                                        <h3 id="precio-custom"><span></span>A convenir</h3>
+                                        <p>por mes</p>
                                         <a href="https://wa.me/56967656673?text=Hola,%20quiero%20mi%20TatsuBot%20Custom."  target="_blank">
                                             Lo quiero
                                         </a>
@@ -951,6 +955,44 @@
       window.addEventListener('resize', fixBodyPadding);
     })();
   </script>
+  <script>
+    // Detectar país con ipapi
+    fetch("https://ipapi.co/json/")
+        .then(res => res.json())
+        .then(data => {
+            console.log(data.country_name)
+            let country = data.country_name; 
+            let precioPro = "";
+            let precioPremium = "";
+            console.log(country)
+            switch(country) {
+                case "Argentina":
+                    precioPro = "58.000 ARS";
+                    precioPremium = "95.000 ARS";
+                    break;
+                case "Chile":
+                    precioPro = "55.000 CLP";
+                    precioPremium = "78.000 CLP";
+                    break;
+                case "Venezuela":
+                    precioPro = "74 USD";
+                    precioPremium = "112 USD";
+                    break;
+                default:
+                    // fallback: USD
+                    precioPro = "$755 USD";
+                    precioPremium = "$109 USD";
+            }
+    
+            document.getElementById("precio-pro").innerText = precioPro;
+            document.getElementById("precio-premium").innerText = precioPremium;
+        })
+        .catch(err => {
+            console.error("Error detectando ubicación:", err);
+            document.getElementById("precio-pro").innerText = "$79 USD";
+            document.getElementById("precio-premium").innerText = "$109 USD";
+        });
+    </script>
   
 
 <!-- Modal del formulario -->

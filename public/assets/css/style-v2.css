@@ -15322,3 +15322,7 @@ h3 a:hover{
 .chat-window-toggle {
   animation: pulse 2s infinite;
 }
+
+#precio-premium, #precio-pro {
+  font-size: 40px;
+}
