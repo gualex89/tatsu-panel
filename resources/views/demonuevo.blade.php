@@ -347,11 +347,11 @@
                     <nav class="main-menu navbar-expand-md navbar-light">
                       <div class="collapse navbar-collapse show clearfix" id="navbarSupportedContent">
                         <ul class="navigation clearfix">
-                          <li><a href="#home">Home</a></li>
-                          <li><a href="#beneficios">Beneficios</a></li>
-                          <li><a href="#como-funciona">Cómo funciona</a></li>
-                          <li><a href="#precios">Precios</a></li>
-                          <li><a href="#testimonios">Testimonios</a></li>
+                          <li><a href="/#home">Home</a></li>
+                          <li><a href="/#beneficios">Beneficios</a></li>
+                          <li><a href="/#como-funciona">Cómo funciona</a></li>
+                          <li><a href="/#precios">Precios</a></li>
+                          <li><a href="/#testimonios">Testimonios</a></li>
                         </ul>
                       </div>
                     </nav>
