@@ -164,6 +164,8 @@
                           <li><a href="#como-funciona">Cómo funciona</a></li>
                           <li><a href="#precios">Precios</a></li>
                           <li><a href="#testimonios">Testimonios</a></li>
+                          <li><a href="/demo">Demo</a></li>
+
                         </ul>
                       </div>
                     </nav>
@@ -248,10 +250,19 @@
                             <h2>Tu asistente virtual inteligente para atención 24/7</h2>
                             <p>Automatizá tu atención al cliente sin perder cercanía ni ventas</p>
                             <div class="btn-box">
-                                <a href="https://wa.me/56967656673?text=Hola,%20quiero%20información%20sobre%20TatsuBot." class="theme-btn btn-ten" target="_blank">
-                                    Contactar por WhatsApp
-                                </a>
+                                <div>
 
+                                    <a href="https://wa.me/56967656673?text=Hola,%20quiero%20información%20sobre%20TatsuBot." class="theme-btn btn-ten" target="_blank">
+                                        Contactar por WhatsApp
+                                    </a>
+                                </div>
+                                <div class="mt-3">
+
+                                    <a href="/demo" class="theme-btn btn-ten">
+                                        Ver Demostración
+                                    </a>
+                                </div>
+                                    
                             </div>
                         </div>
                     </div>
@@ -747,6 +758,8 @@
                                 <li><a href="#como-funciona">¿Cómo funciona?</a></li>
                                 <li><a href="#precios">Precios</a></li>
                                 <li><a href="#testimonios">Testimonios</a></li>
+                                <li><a href="/demo">Demostración</a></li>
+
                                 
                             </ul>
                         </div>
