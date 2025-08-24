@@ -591,7 +591,7 @@
                                     </div>
                                     
                                     <div class="pricing-box">
-                                        <h3 id="precio-custom"><span></span>A convenir</h3>
+                                        <h3 id="precio-custom"><span></span>Consultar valor</h3>
                                         <p>por mes</p>
                                         <a href="https://wa.me/56967656673?text=Hola,%20quiero%20mi%20TatsuBot%20Custom."  target="_blank">
                                             Lo quiero
@@ -980,8 +980,8 @@
                     break;
                 default:
                     // fallback: USD
-                    precioPro = "$755 USD";
-                    precioPremium = "$109 USD";
+                    precioPro = "$74 USD";
+                    precioPremium = "$112 USD";
             }
     
             document.getElementById("precio-pro").innerText = precioPro;

@@ -592,3 +592,68 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 /*# sourceMappingURL=login.css.map */
+
+.theme-btn {
+  position: relative;
+  display: inline-flex; /* en lugar de flex 100% */
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  font-weight: 600;
+  color: #fff;
+  border-radius: 10px;
+  padding: 12px 25px;
+  height: auto; /* no fijo */
+  width: auto;  /* 👈 evita ocupar toda la fila */
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+
+.theme-btn.btn-ten{
+  border-radius: 30px;
+  text-decoration: none;
+  text-align: center;
+  
+}
+
+.theme-btn.btn-ten{
+	background: -webkit-linear-gradient(0deg, #ff6525, #ff9601 100%) !important;
+
+}
+.banner-style-seven .content-box .btn-box a.theme-btn{
+  padding: 12.5px 23px 12.5px 8px;
+  font-weight: 400;
+}
+
+.theme-btn.btn-ten {
+  width: auto; /* evita el 100% */
+}
+
+
+.theme-btn.btn-ten {
+  width: auto !important;      /* evita 100% */
+  display: inline-flex !important; /* no bloquea toda la fila */
+  border-radius: 30px;
+  text-decoration: none;
+  text-align: center;
+  background: -webkit-linear-gradient(0deg, #ff6525, #ff9601 100%) !important;
+}
+#divparticles{
+  margin: 30px;
+}
+
+
+@media (max-width:768px){
+  .theme-btn.btn-ten {
+    
+    
+    z-index: 9999;
+    font-size: 14px;
+  }
+
+  #divparticles{
+    margin: 0px;
+  }
+  
+}

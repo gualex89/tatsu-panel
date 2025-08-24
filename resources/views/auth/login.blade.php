@@ -17,6 +17,9 @@
         href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300&display=swap"
         rel="stylesheet">
     <!-- Bootstrap css -->
+    <!-- Bootstrap Bundle con Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
     <link rel="stylesheet" type="text/css" href="{{ asset('assets-login/css/bootstrap.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets-login/css/fontawesome.css') }}">
     <!-- Theme css -->
@@ -24,6 +27,20 @@
 </head>
 
 <body>
+    <div class="modal fade" id="formModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-fullscreen-sm-down">
+            <div class="modal-content" style="background: none; border: none;">
+            <div class="modal-body p-0">
+                <iframe 
+                src="https://tatsubot.makenafundas.com.ar/form/contactame" 
+                width="100%" 
+                height="700" 
+                style="border:none; overflow:auto; display:block;">
+                </iframe>
+            </div>
+            </div>
+        </div>
+    </div>
     <!-- 01 Preloader -->
     
     <!-- Preloader end -->
@@ -32,6 +49,22 @@
         <div class="full-width-screen">
             <div class="container-fluid p-0">
                 <div class="particles-bg" id="particles-js">
+                    <div id="divparticles" class="row d-flex justify-content-between align-items-center px-3 py-4">
+                        <!-- Volver -->
+                        <div class="col-auto">
+                          <h2 class="m-0">
+                            <a href="/" class="text-white text-decoration-none">&lt; Volver</a>
+                          </h2>
+                        </div>
+                      
+                        <!-- Botón -->
+                        <div class="col-auto">
+                          <a href="#" class="theme-btn btn-ten" data-bs-toggle="modal" data-bs-target="#formModal">
+                            QUIERO MI BOT
+                          </a>
+                        </div>
+                    </div>
+                        
                     <div class="content-detail">
                         <!-- Login form -->
                         <form action="" class="login-form" method="POST">
