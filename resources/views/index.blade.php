@@ -248,7 +248,7 @@
                     <div class="col-lg-6 col-md-12 col-sm-12 content-column">
                         <div class="content-box wow fadeInUp animated" data-wow-delay="00ms" data-wow-duration="1500ms">
                             <h2>Tu asistente virtual inteligente para atención 24/7</h2>
-                            <p>Automatizá tu atención al cliente sin perder cercanía ni ventas</p>
+                            <p>Automatiza tu atención al cliente sin perder cercanía ni ventas</p>
                             <div class="btn-box">
                                 <div>
 
