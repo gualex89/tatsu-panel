@@ -44,21 +44,25 @@
         border-radius: 20px 20px 20px 0px !important;
     }
     .chat-layout .chat-body{
-background-image: url(https://vgroup-content.vgroup.cl/2025/07/28/tsbt.png);
-background-repeat: repeat;
-}
-.chat-message.chat-message-from-bot:not(.chat-message-transparent) {
-background-color: #c2ecf0;
-border: var(--chat--message--bot--border);
-}
-@media (max-width: 768px) {
+      background-image: url(https://vgroup-content.vgroup.cl/2025/07/28/tsbt.png);
+      background-repeat: repeat;
+      }
+      .chat-message.chat-message-from-bot:not(.chat-message-transparent) {
+      background-color: #c2ecf0;
+      border: var(--chat--message--bot--border);
+      }
+    @media (max-width: 768px) {
 
-  .chat-window-wrapper {
+      .chat-window-wrapper {
+          
+        bottom: px !important;
+      }    
+
+    }
+    .chat-input-send-button:not(:disabled) {
       
-    bottom: px !important;
-  }    
-
-}
+      color: #161616 !important; /* opcional, para contraste */
+    }
   </style>
 </head>
 <body>
