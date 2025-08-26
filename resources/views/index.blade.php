@@ -523,9 +523,9 @@
                                     <div class="bg-shape" style="background-image: url(assets/images/shape/shape-54.png);"></div>
                                     <div class="light-shape" style="background-image: url(assets/images/shape/shape-55.png);"></div>
                                     <ul class="list clearfix">
-                                        <li>Inteligencia Artificial Pro</li>
+                                        <li>Inteligencia Artificial Pro <br> (audio y texto)</li>
                                         <li>2 Canales (WhatsApp e Instagram)</li>
-                                        <li>300 conversaciones mensuales</li>
+                                        <li>500 conversaciones mensuales</li>
                                         
                                     </ul>
                                     <div class="links-box">
@@ -563,9 +563,9 @@
                                     <div class="bg-shape" style="background-image: url(assets/images/shape/shape-54.png);"></div>
                                     <div class="light-shape" style="background-image: url(assets/images/shape/shape-55.png);"></div>
                                     <ul class="list clearfix">
-                                        <li>Inteligencia Artificial Avanzada</li>
-                                        <li>2 Canales (WhatsApp e Instagram)</li>
+                                        <li>Inteligencia Artificial Avanzada <br> (audio y texto)</li>
                                         <li>Conversaciones mensuales ilimitadas</li>
+                                        <li>Documentos</li>
                                         <li>Bases de datos</li>
                                     </ul>
                                     <div class="links-box">
