@@ -34,82 +34,54 @@
   <link href="assets/css/color.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- jQuery -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  
   <link href="https://cdn.jsdelivr.net/npm/@n8n/chat/dist/style.css" rel="stylesheet" />
-  <script type="module">
-      import { createChat } from 'https://cdn.jsdelivr.net/npm/@n8n/chat/dist/chat.bundle.es.js';
-      
-      createChat({
-          webhookUrl: 'https://tatsubot.makenafundas.com.ar/webhook/ce56c971-443b-4aa4-999f-96271b0102e8/chat',
-          initialMessages : [ 
-              '¡Hola! 👋' , 
-              'Mi nombre es TatsuBot. ¿Cómo puedo ayudarte hoy?' 
-            ] ,
-            i18n : { 
-                en : { 
-                    title : 'Tatsu Bot 🤖' , 
-                    subtitle :  '' ,
-                    footer : '' , 
-                    getStarted : 'Nueva conversación' , 
-                    inputPlaceholder : 'Escribe tu pregunta..' , 
-                } , 
-                defaultLanguage : 'es' ,
-                
-            } 
-        });
-        </script>
-    <link href="./assets/css/style-v2.css" rel="stylesheet">
-    <link href="assets/css/responsive.css" rel="stylesheet">
+  <!-- REEMPLAZADO: script module original ahora vive al final unificado -->
+  <link href="./assets/css/style-v2.css" rel="stylesheet">
+  <link href="assets/css/responsive.css" rel="stylesheet">
 
-    <style>
-        .chat-window-wrapper .chat-window-toggle{
-            background: #4a0f6f;
-        }
-        .chat-window-wrapper .chat-window-toggle:hover{
-            background: #4a0f6f;
-        }
-        .chat-header {
-            background: #4a0f6f !important;
-        }
+  <style>
+    .chat-window-wrapper .chat-window-toggle{
+        background: #4a0f6f;
+    }
+    .chat-window-wrapper .chat-window-toggle:hover{
+        background: #4a0f6f;
+    }
+    .chat-header {
+        background: #4a0f6f !important;
+    }
 
-        .chat-window {
-            border-radius: 25px !important;
-        }
+    .chat-window {
+        border-radius: 25px !important;
+    }
 
-        .scroll-top.open{
-            left: 25px !important;
-            background: #4a0f6f !important;
-        }
+    .scroll-top.open{
+        left: 25px !important;
+        background: #4a0f6f !important;
+    }
+    
+    .scroll-top.style-two {
+        left: 25px !important;
+        background: #4a0f6f !important;
+    }
+    .chat-message.chat-message-from-user:not(.chat-message-transparent) {
         
-        .scroll-top.style-two {
-            left: 25px !important;
-            background: #4a0f6f !important;
-        }
-        .chat-message.chat-message-from-user:not(.chat-message-transparent) {
-            
-            border-radius: 20px 20px 0px 20px !important;
-        }   
+        border-radius: 20px 20px 0px 20px !important;
+    }   
 
-        .chat-message.chat-message-from-bot:not(.chat-message-transparent) {
-            
-            border-radius: 20px 20px 20px 0px !important;
-        }
-        .chat-layout .chat-body{
-    background-image: url(https://vgroup-content.vgroup.cl/2025/07/28/tsbt.png);
-    background-repeat: repeat;
+    .chat-message.chat-message-from-bot:not(.chat-message-transparent) {
+        
+        border-radius: 20px 20px 20px 0px !important;
+    }
+    .chat-layout .chat-body{
+      background-image: url(https://vgroup-content.vgroup.cl/2025/07/28/tsbt.png);
+      background-repeat: repeat;
     }
     .chat-message.chat-message-from-bot:not(.chat-message-transparent) {
-    background-color: #c2ecf0;
-    border: var(--chat--message--bot--border);
+      background-color: #c2ecf0;
+      border: var(--chat--message--bot--border);
     }
-
-    </style>
+  </style>
 </head>
-
-
-
 
 <!-- page wrapper -->
 <body>
@@ -897,7 +869,8 @@
         });
         const intervalVideo = setInterval(() => {
             const toggleBtn = document.querySelector('.chat-window-wrapper .chat-window-toggle');
-            if (!toggleBtn || toggleBtn.querySelector('video')) return;
+            if (!toggleBtn || !toggleBtn.querySelector) return;
+            if (toggleBtn.querySelector('video')) return;
     
             const svgIcon = toggleBtn.querySelector('svg');
             if (svgIcon) svgIcon.style.display = 'none';
@@ -955,44 +928,94 @@
       window.addEventListener('resize', fixBodyPadding);
     })();
   </script>
-  <script>
-    // Detectar país con ipapi
-    fetch("https://ipapi.co/json/")
-        .then(res => res.json())
-        .then(data => {
-            console.log(data.country_name)
-            let country = data.country_name; 
-            let precioPro = "";
-            let precioPremium = "";
-            console.log(country)
-            switch(country) {
-                case "Argentina":
-                    precioPro = "58.000 ARS";
-                    precioPremium = "95.000 ARS";
-                    break;
-                case "Chile":
-                    precioPro = "55.000 CLP";
-                    precioPremium = "78.000 CLP";
-                    break;
-                case "Venezuela":
-                    precioPro = "74 USD";
-                    precioPremium = "112 USD";
-                    break;
-                default:
-                    // fallback: USD
-                    precioPro = "$74 USD";
-                    precioPremium = "$112 USD";
+
+  <!-- 🔗 CHAT + PRECIOS UNIFICADOS: detecta país → pinta precios → crea chat con metadata -->
+  <script type="module">
+    import { createChat } from 'https://cdn.jsdelivr.net/npm/@n8n/chat/dist/chat.bundle.es.js';
+
+    async function getGeoAndPrices(){
+      try{
+        const res = await fetch("https://ipapi.co/json/");
+        const data = await res.json();
+        const country = data?.country_name || 'International';
+
+        let pro, premium, currency, symbol;
+        switch(country){
+          case "Argentina": pro="58.000 ARS"; premium="95.000 ARS"; currency="ARS"; symbol="$"; break;
+          case "Chile": pro="55.000 CLP"; premium="78.000 CLP"; currency="CLP"; symbol="$"; break;
+          case "Venezuela": pro="74 USD"; premium="112 USD"; currency="USD"; symbol="$"; break;
+          default: pro="74 USD"; premium="112 USD"; currency="USD"; symbol="$";
+        }
+
+        return {
+          country, currency, symbol,
+          planPrices: {
+            pro, premium,
+            raw: {
+              pro: country==="Argentina" ? 58000 : country==="Chile" ? 55000 : 74,
+              premium: country==="Argentina" ? 95000 : country==="Chile" ? 78000 : 112
             }
-    
-            document.getElementById("precio-pro").innerText = precioPro;
-            document.getElementById("precio-premium").innerText = precioPremium;
-        })
-        .catch(err => {
-            console.error("Error detectando ubicación:", err);
-            document.getElementById("precio-pro").innerText = "$79 USD";
-            document.getElementById("precio-premium").innerText = "$109 USD";
-        });
-    </script>
+          },
+          plans:{
+            proUrl:"https://wa.me/56967656673?text=Hola,%20quiero%20mi%20TatsuBot%20Pro.",
+            premiumUrl:"https://wa.me/56967656673?text=Hola,%20quiero%20mi%20TatsuBot%20Premium.",
+            customUrl:"https://wa.me/56967656673?text=Hola,%20quiero%20mi%20TatsuBot%20Custom."
+          }
+        };
+      }catch(e){
+        return {
+          country:"International", currency:"USD", symbol:"$",
+          planPrices:{ pro:"74 USD", premium:"112 USD", raw:{ pro:74, premium:112 } },
+          plans:{
+            proUrl:"https://wa.me/56967656673?text=Hola,%20quiero%20mi%20TatsuBot%20Pro.",
+            premiumUrl:"https://wa.me/56967656673?text=Hola,%20quiero%20mi%20TatsuBot%20Premium.",
+            customUrl:"https://wa.me/56967656673?text=Hola,%20quiero%20mi%20TatsuBot%20Custom."
+          }
+        };
+      }
+    }
+
+    (async () => {
+      const meta = await getGeoAndPrices();
+
+      // Pintar precios en la UI
+      const proEl = document.getElementById("precio-pro");
+      const premEl = document.getElementById("precio-premium");
+      if (proEl) proEl.innerText = meta.planPrices.pro;
+      if (premEl) premEl.innerText = meta.planPrices.premium;
+
+      // Crear el chat pasando metadata (queda disponible en n8n como $json.metadata.*)
+      createChat({
+        webhookUrl: 'https://tatsubot.makenafundas.com.ar/webhook/ce56c971-443b-4aa4-999f-96271b0102e8/chat',
+        metadata: meta,
+        // Opcional: headers para logging/ruteo en backend
+        webhookConfig:{
+          method:'POST',
+          headers:{
+            'X-Country': meta.country,
+            'X-Currency': meta.currency
+          }
+        },
+        initialMessages : [ 
+          '¡Hola! 👋' , 
+          'Mi nombre es TatsuBot. ¿Cómo puedo ayudarte hoy?' 
+        ],
+        i18n : { 
+          en : { 
+            title : 'Tatsu Bot 🤖' , 
+            subtitle :  '' ,
+            footer : '' , 
+            getStarted : 'Nueva conversación' , 
+            inputPlaceholder : 'Escribe tu pregunta..' , 
+          } , 
+          defaultLanguage : 'es',
+        },
+        loadPreviousSession: true
+      });
+    })();
+  </script>
+
+  <!-- 🔥 IMPORTANTE: Se eliminó el bloque original de fetch(ipapi) duplicado para evitar conflicto -->
   
 
 <!-- Modal del formulario -->
