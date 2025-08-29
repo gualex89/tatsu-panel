@@ -478,11 +478,11 @@
                                     <div class="light-shape" style="background-image: url(assets/images/shape/shape-55.png);"></div>
                                     <div class="table-header">
                                         <h3>Pro</h3>
-                                        <p>Plan pro ideal para empezar</p>
+                                        <p> Automatiza los aspectos esenciales y empieza a ahorrar tiempo desde ya.</p>
                                     </div>
                                     <div class="pricing-box">
                                         
-                                        <h3 id="precio-pro"><span>$</span></h3>
+                                        <h3 class="mt-2" id="precio-pro"><span>$</span></h3>
                                         <p>Por mes</p>
                                     </div>
                                     <div class="links-box">
@@ -519,7 +519,7 @@
                                     <div class="light-shape" style="background-image: url(assets/images/shape/shape-55.png);"></div>
                                     <div class="table-header">
                                         <h3>Premium</h3>
-                                        <p>Perfecto para negocios en crecimiento</p>
+                                        <p> Escala tu negocio. Más potencia, más herramientas, más ventas.</p>
                                     </div>
                                     <div class="pricing-box">
                                         <h3 id="precio-premium"><span>$</span></h3>
@@ -537,8 +537,8 @@
                                     <ul class="list clearfix">
                                         <li>Inteligencia Artificial Avanzada <br> (audio y texto)</li>
                                         <li>Conversaciones mensuales ilimitadas</li>
-                                        <li>Documentos</li>
-                                        <li>Bases de datos</li>
+                                        <li>Envía documentos</li>
+                                        <li>Integra bases de datos</li>
                                     </ul>
                                     <div class="links-box">
                                         <a href="https://wa.me/56967656673?text=Hola,%20quiero%20mi%20TatsuBot%20Premium."  target="_blank">
@@ -559,7 +559,7 @@
                                     <div class="light-shape" style="background-image: url(assets/images/shape/shape-55.png);"></div>
                                     <div class="table-header">
                                         <h3>Custom</h3>
-                                        <p>Solución a medida para tu negocio</p>
+                                        <p>Creamos un plan a medida según tus necesidades específicas</p>
                                     </div>
                                     
                                     <div class="pricing-box">
