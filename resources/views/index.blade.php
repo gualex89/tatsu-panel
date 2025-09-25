@@ -15,7 +15,8 @@
   <meta property="og:title" content="TatsuBot - Tu Asistente Virtual Inteligente">
   <meta property="og:description" content="Automatizá la atención de tu negocio con TatsuBot. Tu tienda disponible 24/7 para responder, vender y sorprender.">
   <meta property="og:image" content="https://tatsubot.site/assets/images/gallery/whatsapp-conversacion.png">
-  <meta property="og:image:type" content="image/png">
+    <meta property="og:image" content="https://tatsubot.site/assets/images/rrssimg.png">
+    <meta property="og:image:type" content="image/png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:url" content="https://tatsubot.site">
