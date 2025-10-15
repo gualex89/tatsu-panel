@@ -941,7 +941,7 @@
 
         let pro, premium, currency, symbol;
         switch(country){
-          case "Argentina": pro="58.000 ARS"; premium="95.000 ARS"; currency="ARS"; symbol="$"; break;
+          case "Argentina": pro="62.500 ARS"; premium="99.000 ARS"; currency="ARS"; symbol="$"; break;
           case "Chile": pro="55.000 CLP"; premium="78.000 CLP"; currency="CLP"; symbol="$"; break;
           case "Venezuela": pro="74 USD"; premium="112 USD"; currency="USD"; symbol="$"; break;
           default: pro="74 USD"; premium="112 USD"; currency="USD"; symbol="$";
